@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# 11ty Build Output
+_site/
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+
+# Editor directories
+.vscode/
+.idea/

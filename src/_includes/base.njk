@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="dark" data-theme-set="default">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} | DevBlog</title>
+    
+    <!-- Dynamic Font Configuration -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="{{ fonts.url }}" rel="stylesheet">
+    
+    <!-- Inject Configured Fonts as CSS Variables -->
+    <style>
+        :root {
+            --font-family-primary: {{ fonts.primary | safe }};
+            --font-family-secondary: {{ fonts.secondary | safe }};
+            --font-family-monospace: {{ fonts.monospace | safe }};
+        }
+    </style>
+
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+    <header>
+        <nav class="site-nav">
+            <a href="/" class="logo">DevBlog_</a>
+            
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search posts, tags..." autocomplete="off">
+            </div>
+
+            <div class="theme-controls">
+                <select id="theme-select" class="theme-select" aria-label="Select Theme">
+                    <option value="corbs">Corbs</option>
+                    <option value="default">Default (GitHub)</option>
+                    <option value="synthwave">Synthwave '84</option>
+                    <option value="dracula">Dracula</option>
+                    <option value="nord">Nord</option>
+                    <option value="monokai">Monokai</option>
+                    <option value="solarized">Solarized</option>
+                    <option value="gruvbox">Gruvbox</option>
+                    <option value="onedark">One Dark</option>
+                    <option value="tokyonight">Tokyo Night</option>
+                    <option value="catppuccin">Catppuccin</option>
+                    <option value="material">Material Palenight</option>
+                    <option value="cyberpunk">Cyberpunk</option>
+                    <option value="coffee">Coffee</option>
+                    <option value="midnight">Midnight</option>
+                    <option value="terminal">Terminal</option>
+                    <option value="ubuntu">Ubuntu</option>
+                    <option value="shades-purple">Shades of Purple</option>
+                    <option value="zenburn">Zenburn</option>
+                    <option value="deepspace">Deep Space</option>
+                    <option value="moonlight">Moonlight</option>
+                    <option value="nightowl">Night Owl</option>
+                    <option value="panda">Panda</option>
+                    <option value="cobalt">Cobalt2</option>
+                    <option value="ayu">Ayu</option>
+                    <option value="forest">Forest</option>
+                </select>
+
+                <button id="theme-toggle" class="theme-btn">Light Mode</button>
+            </div>
+        </nav>
+    </header>
+    
+    <main>
+        <div id="content-wrapper">
+            {{ content | safe }}
+        </div>
+
+        <div id="search-results-wrapper" style="display: none;">
+            <h2>Search Results</h2>
+            <ul id="search-results-list" class="post-list"></ul>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Built with Markdown & 11ty.</p>
+    </footer>
+
+    <script src="/assets/js/search.js"></script>
+</body>
+</html>
