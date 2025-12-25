@@ -123,6 +123,17 @@ Here is a sample image with alt text and a title.
   <img src="https://placehold.co/150" alt="Square 3">
 </div>
 
+### Lightbox
+
+<div class="image-grid">
+  <img src="https://placehold.co/600x400/orange/white?text=Orange" alt="Orange">
+  <img src="https://placehold.co/400x600/red/white?text=Red" alt="Red">
+  <img src="https://placehold.co/500x500/blue/white?text=Blue" alt="Blue">
+  <img src="https://placehold.co/600x600/grey/white?text=Grey" alt="Grey">
+  <img src="https://placehold.co/800x600/green/white?text=Green" alt="Green">
+  <img src="https://placehold.co/600x300/purple/white?text=Purple" alt="Purple">
+</div>
+
 ---
 
 ## Links

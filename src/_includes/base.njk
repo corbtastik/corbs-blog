@@ -30,7 +30,9 @@
 <body>
     <header>
         <nav class="site-nav">
-            <a href="/" class="logo">Yolo Blog</a>
+            <a href="/" class="logo-link" aria-label="Home">
+                <img src="https://placehold.co/100x100/eee/333?text=Logo" alt="Site Logo" class="site-logo">
+            </a>
             
             <div class="search-container">
                 <input type="text" id="search-input" placeholder="Search posts, tags, date..." autocomplete="off">
@@ -99,7 +101,13 @@
         <p>© 2025 Built with AI and Love</p>
     </footer>
 
+    <!-- LIGHTBOX CONTAINER (Hidden) -->
+    <div id="lightbox">
+        <img id="lightbox-img" src="" alt="Expanded View">
+    </div>
+
     <script src="/assets/js/search.js"></script>
     <script src="/assets/js/code-toolbar.js"></script>
+    <script src="/assets/js/lightbox.js"></script> <!-- Add this line -->
 </body>
 </html>

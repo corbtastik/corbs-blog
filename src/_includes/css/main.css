@@ -56,6 +56,32 @@ header {
     gap: 1.5rem;
 }
 
+/* =========================================
+   LOGO STYLES
+   ========================================= */
+
+/* The Link Container */
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+}
+
+.logo-link:hover {
+    transform: scale(1.05); /* Subtle zoom on hover */
+}
+
+/* The Circular Image */
+.site-logo {
+    width: 50px;  /* Adjust size as needed */
+    height: 50px;
+    border-radius: 50%; /* Makes it a circle */
+    object-fit: cover;  /* Ensures image doesn't stretch */
+    border: 2px solid var(--primary-color); /* Theme-colored border */
+    background-color: var(--card-bg);
+}
+
 .logo {
     font-weight: bold;
     font-size: 1.2rem;
@@ -328,6 +354,80 @@ img { max-width: 100%; height: auto; border-radius: 6px; }
 }
 
 /* =========================================
+   6. IMAGE GRID & LIGHTBOX
+   ========================================= */
+
+/* The Grid Container */
+.image-grid {
+    display: grid;
+    /* Auto-fit columns: at least 150px wide, but fill space */
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+    margin: 2rem 0;
+}
+
+/* The Thumbnails */
+.image-grid img {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Forces square shape */
+    object-fit: cover;   /* Crops image to fit square */
+    border-radius: 8px;
+    cursor: zoom-in;
+    transition: transform 0.2s, filter 0.2s;
+    border: 1px solid var(--border-color);
+    display: block; /* Removes bottom whitespace */
+}
+
+.image-grid img:hover {
+    transform: scale(1.03);
+    filter: brightness(1.1);
+    border-color: var(--primary-color);
+}
+
+/* The Lightbox Overlay (Hidden by default) */
+#lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Dark backdrop */
+    backdrop-filter: blur(5px); /* Modern blur effect */
+    z-index: 9999; /* On top of everything */
+    display: none; /* Hidden */
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* The Expanded Image */
+#lightbox img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    border-radius: 4px;
+    cursor: zoom-out;
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+/* Active State Classes */
+#lightbox.active {
+    display: flex;
+    opacity: 1;
+}
+
+#lightbox.active img {
+    transform: scale(1);
+}
+
+/* =========================================
    4. MOBILE RESPONSIVE HEADER
    ========================================= */
 @media (max-width: 768px) {
@@ -337,8 +437,8 @@ img { max-width: 100%; height: auto; border-radius: 6px; }
         gap: 1rem;
     }
 
-    /* 1. Logo: Top Left */
-    .logo {
+    /* 1. Logo: Top Left (UPDATED SELECTOR) */
+    .logo-link {
         order: 1;
     }
 
