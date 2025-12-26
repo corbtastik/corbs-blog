@@ -22,9 +22,11 @@ pagination:
 
     <p>{{ post.data.description }}</p>
 
-    {% if post.data.tags %}
-        <p style="opacity: 0.7;">Tags: {{ post.data.tags | join(", ") }}</p>
-    {% endif %}
+    <div class="post-tags">
+    {% for tag in post.data.tags %}
+        <a href="/tags/{{ tag | slug }}">{{ tag }}</a>
+    {% endfor %}
+    </div>
   </li>
 {% endfor %}
 </ul>
