@@ -174,6 +174,13 @@ Option 2: Embed a specific file from a Gist
 
 {% gist "https://gist.github.com/corbtastik/5c77562ad919f08a171f6f3f4d4a6849", "mongodb-deployment.yaml" %}
 
+---
+
+## Google Slides
+
+{% slide "https://docs.google.com/presentation/d/e/2PACX-1vToe6FUtCbYk8E-InEoL2t131mKX06KWSoCTn-_4fFoeFSjdudF8KgL55yVrAYMxSsAN2WtM698N9db/embed?start=false&loop=false&delayms=5000", "One Awesome Prezo" %}
+
+{% slide "https://docs.google.com/presentation/d/e/2PACX-1vT2IwQETbpJbcsZs6JPXAGuuU6ZLyHqNd4NZ2DDDxCiHHWbRG_F6utyFetiAjpHW6ES4K8OVGs8QiHv/embed?start=false&loop=true&delayms=5000", "Bling you a Mac Mini" %}
 
 ## Other Elements
 

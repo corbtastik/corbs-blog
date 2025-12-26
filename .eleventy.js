@@ -28,6 +28,22 @@ module.exports = function(eleventyConfig) {
         return `<div class="gist-wrapper"><script src="${embedUrl}"></script></div>`;
     });
 
+    // GOOGLE SLIDES SHORTCODE
+    eleventyConfig.addShortcode("slide", (url, title) => {
+        return `
+        <div class="slide-container">
+            <iframe 
+            src="${url}" 
+            title="${title || 'Google Slides presentation'}"
+            frameborder="0" 
+            allowfullscreen="true" 
+            mozallowfullscreen="true" 
+            webkitallowfullscreen="true">
+            </iframe>
+        </div>
+        `;
+    });
+
     // YOUTUBE SHORTCODE
     eleventyConfig.addShortcode("youtube", (videoURL, title) => {
         // Regex to extract video ID from various YouTube URL formats

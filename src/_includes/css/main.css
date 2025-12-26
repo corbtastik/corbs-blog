@@ -617,6 +617,78 @@ body .gist-wrapper thead tr {
 }
 
 /* =========================================
+   9. GOOGLE SLIDES EMBED
+   ========================================= */
+
+.slide-container {
+    position: relative;
+    width: 100%;
+    /* Google Slides defaults to 16:9. 
+       If you use 4:3 slides, you can override this inline or add a modifier class. */
+    aspect-ratio: 16 / 9; 
+    margin: 2rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    background-color: var(--card-bg);
+}
+
+.slide-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Formula Styling */
+.formula {
+  display: flex;
+  align-items: center;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  border-left: 6px solid #002D72; /* Classic Baseball Blue */
+  margin: 25px 0;
+  font-size: 1.1rem;
+  overflow-x: auto; /* Ensures long formulas don't break on mobile */
+}
+
+.formula-label {
+  font-weight: bold;
+  margin-right: 15px;
+  color: #333;
+  white-space: nowrap;
+}
+
+/* Creating the fraction look */
+.fraction {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.numerator {
+  border-bottom: 2px solid #333;
+  padding: 0 15px;
+  margin-bottom: 2px;
+}
+
+.denominator {
+  padding: 0 15px;
+}
+
+/* Style variables to make them pop */
+var {
+  font-style: normal;
+  font-weight: 700;
+  color: #D31145; /* Baseball Red */
+}
+
+/* =========================================
    4. MOBILE RESPONSIVE HEADER
    ========================================= */
 @media (max-width: 768px) {
