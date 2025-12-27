@@ -2,14 +2,16 @@
 permalink: /assets/css/style.css
 eleventyExcludeFromCollections: true
 ---
-/* Combined CSS - Themes + Syntax + Main */
+/* Combined CSS - Themes + Syntax + Main + Gallery */
 
 /* 1. Site Themes */
 {% include "css/themes.css" %}
 
-/* 2. Syntax Highlighting (Configured in src/_data/site.json) */
-{# {% include "css/syntax/" + site.syntax_theme + ".css" %} #}
+/* 2. Syntax Highlighting */
 {% include "css/syntax.css" %}
 
 /* 3. Main Layout */
 {% include "css/main.css" %}
+
+/* 4. Gallery & Portfolio */
+{% include "css/gallery.css" %}

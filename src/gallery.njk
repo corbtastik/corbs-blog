@@ -1,0 +1,35 @@
+---
+layout: base.njk
+title: Photography
+---
+
+<div class="gallery-container">
+  <!-- The Grid Container -->
+  <div class="masonry-grid" id="gallery-grid">
+    
+    {% for photo in gallery %}
+      <div class="gallery-item" 
+           style="--aspect-ratio: {{ photo.aspectRatio }}">
+        
+        <img 
+          src="{{ photo.thumb }}" 
+          data-full-src="{{ photo.src }}"
+          alt="{{ photo.alt }}"
+          width="{{ photo.width }}"
+          height="{{ photo.height }}"
+          loading="lazy"
+          class="lightbox-trigger"
+          data-caption="{{ photo.caption }}"
+          data-source="{{ photo.source }}"
+        />
+        
+        <!-- Optional Overlay/Hover info -->
+        <div class="overlay">
+          <span>{{ photo.source }}</span>
+        </div>
+
+      </div>
+    {% endfor %}
+
+  </div>
+</div>

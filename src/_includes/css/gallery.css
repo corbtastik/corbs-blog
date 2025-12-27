@@ -1,0 +1,206 @@
+/* src/_includes/css/gallery.css */
+
+.gallery-container {
+  width: 100%;
+  max-width: var(--max-width, 1200px); 
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+/* --- MASONRY GRID (CSS Columns) --- */
+.masonry-grid {
+  column-count: 1; 
+  column-gap: 1.5rem; 
+  transition: all 0.3s ease;
+}
+
+@media (min-width: 600px) {
+  .masonry-grid { column-count: 2; }
+}
+
+@media (min-width: 1000px) {
+  .masonry-grid { column-count: 3; }
+}
+
+@media (min-width: 1400px) {
+  .masonry-grid { column-count: 4; }
+}
+
+/* --- GALLERY ITEMS --- */
+.gallery-item {
+  break-inside: avoid;
+  margin-bottom: 1.5rem;
+  background-color: var(--card-bg, #ffffff);
+  border: none; 
+  border-radius: 8px; 
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: zoom-in; 
+}
+
+.gallery-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0, 0.15);
+}
+
+.gallery-item img {
+  display: block;
+  width: 100%;
+  height: auto; 
+  object-fit: cover;
+  transition: opacity 0.3s ease;
+}
+
+/* --- CAPTION / OVERLAY (On Grid Item) --- */
+.gallery-item .overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  color: white;
+  padding: 20px 10px 10px 10px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none; 
+}
+
+.gallery-item:hover .overlay {
+  opacity: 1;
+}
+
+.gallery-item .overlay span {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: bold;
+}
+
+/* --- src/_includes/css/gallery.css (Replace the bottom section) --- */
+
+/* --- src/_includes/css/gallery.css (Replace the bottom section) --- */
+
+/* LIGHTBOX OVERLAY */
+#lightbox {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  /* The Main Background: 90% Theme Color, 10% Transparent */
+  background: color-mix(in srgb, var(--bg-color, black) 90%, transparent);
+  
+  display: none; 
+  justify-content: center;
+  align-items: center;
+  
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#lightbox.active {
+  display: flex;
+  opacity: 1;
+}
+
+/* Content Wrapper */
+.lightbox-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  
+  /* Flex column forces caption BELOW image and centers it */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-image {
+  max-width: 100%;
+  max-height: 80vh; 
+  border: none; 
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  object-fit: contain;
+  
+  /* NEW: Tells the user that clicking will close/shrink the image */
+  cursor: zoom-out;
+}
+
+.lightbox-caption {
+  /* Text Color: Adapts to theme */
+  color: var(--heading-color, white); 
+  
+  margin-top: 1rem;
+  font-family: var(--font-family-secondary);
+  font-size: 1.1rem;
+  
+  /* UPDATED: Fully transparent so it blends perfectly with the overlay */
+  background: transparent;
+  
+  padding: 0.5rem 1rem;
+  text-align: center;
+}
+
+/* Navigation Buttons */
+.lightbox-nav,
+.lightbox-close {
+  background: none;
+  border: none;
+  
+  /* Button Color */
+  color: var(--heading-color, white); 
+  
+  font-size: 3rem;
+  cursor: pointer;
+  position: absolute;
+  padding: 0 20px;
+  transition: color 0.2s;
+  z-index: 10000;
+  user-select: none;
+}
+
+/* Focus/Hover States */
+.lightbox-nav:focus,
+.lightbox-close:focus {
+  outline: none;
+  color: var(--primary-color, #007bff);
+}
+
+.lightbox-nav:hover,
+.lightbox-close:hover {
+  color: var(--primary-color, #007bff);
+}
+
+.lightbox-close {
+  top: 20px;
+  right: 30px;
+  font-size: 4rem;
+  line-height: 0.5;
+}
+
+.lightbox-nav.prev {
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox-nav.next {
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .lightbox-nav {
+    font-size: 2rem;
+    padding: 0 10px;
+  }
+  .lightbox-nav.prev { left: 5px; }
+  .lightbox-nav.next { right: 5px; }
+  .lightbox-image { max-height: 70vh; }
+}
