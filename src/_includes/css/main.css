@@ -16,6 +16,10 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 1.5em;
     margin-bottom: 0.5em;
     color: var(--heading-color);
+
+    /* FIX: This ensures clicked links stop BELOW the sticky header */
+    /* Header is approx 80px, so 100px gives breathing room */
+    scroll-margin-top: 100px; 
 }
 
 /* Monospace Font (Source Code Pro) */
@@ -589,25 +593,82 @@ img { max-width: 100%; height: auto; border-radius: 6px; }
     cursor: pointer;
 }
 
-/* 2. TOC Section (The Middle - Grows to fill space) */
-.sidebar-toc {
-    flex-grow: 1; 
-    overflow-y: auto; /* Scrollable if TOC is long */
-    margin: 10px 0;
-    padding-right: 5px; 
+/* =========================================
+   ON-PAGE TOC (Right/Left Rail)
+   ========================================= */
+
+/* 1. Layout Wrapper (Only active on posts) */
+main.layout-with-toc {
+    display: grid;
+    /* Default: Content takes space, TOC is 250px */
+    grid-template-columns: 1fr 250px; 
+    gap: 3rem;
+    
+    /* Increase max-width to accommodate side column */
+    max-width: 1200px; 
+    
+    /* Ensure relative positioning for search results overlap */
+    position: relative;
 }
 
-/* Hide scrollbar for cleaner look */
-.sidebar-toc::-webkit-scrollbar { width: 4px; }
-.sidebar-toc::-webkit-scrollbar-thumb { background: var(--tertiary-color); opacity: 0.5; }
+/* 2. Configuration: Left Side Mode */
+main.layout-with-toc.side-left {
+    /* Swap the columns */
+    grid-template-columns: 250px 1fr;
+}
 
+/* Re-order elements visually if side-left is active */
+main.layout-with-toc.side-left .content-col { order: 2; }
+main.layout-with-toc.side-left .toc-col { order: 1; }
+
+
+/* 3. The TOC Column Wrapper */
+.toc-col {
+    /* Hide on mobile by default */
+    display: none; 
+}
+
+/* Show on Desktop */
+@media (min-width: 1024px) {
+    .toc-col {
+        display: block;
+    }
+}
+
+/* 4. The Sticky Box */
+.toc-sticky-wrapper {
+    position: sticky;
+    /* Stick to top of viewport (adjust based on your header height) */
+    top: 100px; 
+    max-height: 80vh;
+    overflow-y: auto;
+    
+    /* DESIGN: Transparent bg matches page */
+    background-color: transparent; 
+    
+    /* Optional: Add a subtle left border like many docs sites */
+    border-left: 1px solid var(--border-color);
+    padding-left: 1rem;
+}
+
+/* Adjust border for Left Side mode */
+main.layout-with-toc.side-left .toc-sticky-wrapper {
+    border-left: none;
+    border-right: 1px solid var(--border-color);
+    padding-left: 0;
+    padding-right: 1rem;
+}
+
+/* 5. Styling the List (Reusing your existing TOC styles mostly) */
 .toc-header {
+    font-family: var(--font-family-secondary);
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     color: var(--tertiary-color);
-    margin-bottom: 0.8rem;
     margin-top: 0;
+    margin-bottom: 1rem;
+    font-weight: bold;
 }
 
 #toc-list {
@@ -617,56 +678,45 @@ img { max-width: 100%; height: auto; border-radius: 6px; }
 }
 
 #toc-list li {
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.6rem;
 }
 
 #toc-list a {
     text-decoration: none;
     font-size: 0.9rem;
-    color: var(--on-primary-container-color);
+    color: var(--text-color);
     opacity: 0.7;
-    transition: all 0.2s ease;
+    transition: all 0.2s;
     display: block;
-    
-    /* This border takes up 2px space */
-    border-left: 2px solid transparent; 
+    line-height: 1.4;
 }
 
-/* Hover & Active States */
 #toc-list a:hover,
 #toc-list a.active {
     opacity: 1;
     color: var(--link-color);
-    border-left-color: var(--link-color);
+    /* Simple bolding for active state instead of border for this layout */
+    font-weight: bold; 
 }
 
-/* --- INDENTATION LEVELS (Recalibrated) --- */
+/* Indentation Hierarchy */
+#toc-list li.toc-h2 a { padding-left: 0px; }
+#toc-list li.toc-h3 a { padding-left: 15px; font-size: 0.85rem; }
+#toc-list li.toc-h4 a { padding-left: 30px; font-size: 0.8rem; }
 
-/* H1: Align perfectly with Home Link (10px total offset) */
-/* Calculation: 2px border + 8px padding = 10px visual start */
-#toc-list li.toc-h1 a {
-    padding-left: 8px; 
-    font-weight: 700;
-    font-size: 0.95rem;
-    margin-top: 10px; /* Slight separation from Home link */
-}
 
-/* H2: Indent ~15px from H1 */
-#toc-list li.toc-h2 a {
-    padding-left: 23px; /* 8px + 15px */
-}
-
-/* H3: Indent ~15px from H2 */
-#toc-list li.toc-h3 a {
-    padding-left: 38px; /* 23px + 15px */
-    font-size: 0.85rem;
-}
-
-/* H4: Indent ~15px from H3 */
-#toc-list li.toc-h4 a {
-    padding-left: 53px; /* 38px + 15px */
-    font-size: 0.8rem;
-    opacity: 0.6;
+/* 6. MOBILE RESPONSIVENESS */
+@media (max-width: 1024px) {
+    /* Disable grid on tablets/phones */
+    main.layout-with-toc {
+        display: block;
+        max-width: 800px; /* Revert to standard reading width */
+    }
+    
+    /* Hide side TOC on mobile (User likely uses the Hamburger menu or we can put it inline) */
+    .toc-col {
+        display: none;
+    }
 }
 
 /* 3. Footer Section (Fixed at bottom) */

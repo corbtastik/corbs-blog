@@ -4,7 +4,10 @@ gdate: 2025-12-28
 tags: ["macos", "devops", "docker", "kubernetes", "orbstack"]
 description: "A fast, lightweight guide to replacing Docker Desktop with OrbStack for containers, Linux VMs, and Kubernetes."
 layout: base.njk
+toc_side: left
 ---
+
+# Getting Started with OrbStack on macOS
 
 For years, Docker Desktop was the de facto standard for containerization on macOS. However, it often came with a heavy cost: battery drain, loud fans, and slow filesystem performance.
 

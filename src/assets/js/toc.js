@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!tocList || !contentArea) return;
 
     // 2. Find Headers (Updated to include H1 - H4)
-    const headers = contentArea.querySelectorAll('h1, h2, h3, h4');
+    const headers = contentArea.querySelectorAll('h2, h3, h4');
     
     if (headers.length === 0) {
         const container = document.getElementById('toc-container');
@@ -51,7 +51,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. ScrollSpy
     const observerOptions = {
         root: null,
-        rootMargin: '-100px 0px -70% 0px', 
+        // Top: -100px (Ignore the area covered by the sticky header)
+        // Bottom: -80% (Ignore the bottom 80% of screen)
+        // This forces the "Active Zone" to be a narrow strip near the top.
+        rootMargin: '-100px 0px -80% 0px', 
         threshold: 0
     };
 
