@@ -104,6 +104,14 @@ header {
 }
 #search-input:focus { outline: none; }
 
+/* FIX FOR SEARCH RESULTS LAYOUT */
+/* Forces search results to take the first slot in Flex/Grid layouts, 
+   ensuring it replaces content on the left instead of swapping with TOC */
+#search-results-wrapper {
+    order: -1; 
+    width: 100%;
+}
+
 /* Theme Controls */
 .theme-controls { display: flex; gap: 10px; align-items: center; }
 
@@ -146,16 +154,12 @@ header {
 main { 
     width: 100%;
     max-width: 800px;
-    
-    /* Zero top margin ensures TOC sits flush against header initially */
     margin: 0 auto 2rem auto; 
-    
     padding: 0 1.5rem; 
     box-sizing: border-box; 
     min-height: 60vh;
 }
 
-/* Content Padding */
 .post-content { 
     padding-top: 2rem; 
 }
@@ -194,35 +198,16 @@ footer {
 .post-item p, .simple-item p { margin: 0; margin-bottom: 0.8rem; }
 
 /* Tag Pills */
-.tag-list a, 
-.post-tags a, 
-.tag:not(.token) {
-    display: inline-block;
-    padding: 6px 14px;
-    border-radius: 50px; 
-    background-color: var(--heading-color);
-    color: var(--bg-color);
-    border: 1px solid var(--heading-color);
-    font-family: var(--font-family-secondary);
-    font-size: 0.85rem;
-    font-weight: 700;
-    text-decoration: none;
-    line-height: 1;
-    margin: 4px 6px 4px 0;
-    transition: transform 0.2s ease, filter 0.2s;
+.tag-list a, .post-tags a, .tag:not(.token) {
+    display: inline-block; padding: 6px 14px; border-radius: 50px;
+    background-color: var(--heading-color); color: var(--bg-color); border: 1px solid var(--heading-color);
+    font-family: var(--font-family-secondary); font-size: 0.85rem; font-weight: 700;
+    text-decoration: none; line-height: 1; margin: 4px 6px 4px 0; transition: transform 0.2s ease, filter 0.2s;
 }
-.tag-list a:hover, 
-.post-tags a:hover, 
-.tag:not(.token):hover {
-    transform: translateY(-2px);
-    filter: brightness(1.1);
-    text-decoration: none;
-    cursor: pointer;
+.tag-list a:hover, .post-tags a:hover, .tag:not(.token):hover {
+    transform: translateY(-2px); filter: brightness(1.1); text-decoration: none; cursor: pointer;
 }
-.tag-list a:visited, 
-.post-tags a:visited {
-    color: var(--bg-color);
-}
+.tag-list a:visited, .post-tags a:visited { color: var(--bg-color); }
 
 .pagination { margin-top: 40px; display: flex; justify-content: space-between; }
 
@@ -362,11 +347,6 @@ img { max-width: 100%; height: auto; border-radius: 6px; }
 /* --- Sticky Inline TOC (The "Bar" Style) --- */
 .inline-toc {
     position: sticky;
-    
-    /* 
-      DYNAMIC STICKY POSITIONING 
-      Uses JS calculated height, falls back to 73px/130px approx.
-    */
     top: var(--header-height-real, 73px);
     z-index: 900; 
     
@@ -438,13 +418,10 @@ body .gist-wrapper .gist-data { background: #fff; }
     
     main.layout-with-toc { display: block; }
     
-    /* Mobile Sticky TOC Config */
     .inline-toc { 
         display: block; 
         /* Fallback for when JS is slow or disabled */
         top: var(--header-height-mobile); 
-        
-        /* Stretch to full width */
         margin-left: -1.5rem; 
         margin-right: -1.5rem;
         padding-left: 1.5rem; 
@@ -478,7 +455,6 @@ body .gist-wrapper .gist-data { background: #fff; }
     footer { margin-left: var(--sidebar-width); }
     .toc-col { display: none; }
     
-    /* Desktop Sticky TOC Config */
     .inline-toc { 
         display: block; 
         top: var(--header-height);
