@@ -7,11 +7,11 @@ description: "Browse posts by topic."
 <h1>Tags</h1>
 
 <!-- 1. Tag Cloud / Navigation -->
-<div class="tag-list" style="margin-bottom: 40px;">
+<div class="tag-list">
 {% for tag, posts in collections %}
   {% if tag != "all" and tag != "posts" %}
     <a href="#{{ tag }}" class="tag">
-        #{{ tag }} <span style="opacity: 0.8; font-size: 0.85em; margin-left: 4px;">{{ posts.length }}</span>
+        #{{ tag }} <span>{{ posts.length }}</span>
     </a>
   {% endif %}
 {% endfor %}
@@ -23,7 +23,7 @@ description: "Browse posts by topic."
 {% for tag, posts in collections %}
   {% if tag != "all" and tag != "posts" %}
     
-    <section id="{{ tag }}" style="margin-bottom: 60px;">
+    <section id="{{ tag }}">
       <!-- Header -->
       <h2>#{{ tag }}</h2>
 
