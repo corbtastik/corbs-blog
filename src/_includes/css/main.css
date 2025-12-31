@@ -283,6 +283,7 @@ footer {
     font-size: 1rem;
     white-space: nowrap;
     margin-left: 1rem;
+    color: var(--tertiary-color);
 }
 
 .post-item p,
@@ -703,7 +704,7 @@ img {
     /* border-top: none; border-left: none; border-right: none; */
     border: none;
 
-    margin-bottom: 2rem;
+    /* margin-bottom: 2rem; */
     width: auto;
 }
 
@@ -729,7 +730,8 @@ img {
     align-items: center;
     justify-content: space-between;
     list-style: none;
-    background-color: var(--bg-color);
+    background-color: var(--primary-container-bg);
+    border-radius: 6px;
 }
 
 .inline-toc-summary::-webkit-details-marker {
@@ -737,7 +739,7 @@ img {
 }
 
 .inline-toc-summary:hover {
-    background-color: var(--secondary-container-bg);
+    background-color: var(--link-color);
 }
 
 .chevron {
@@ -750,7 +752,7 @@ img {
 
 #inline-toc-list {
     padding: 10px 15px;
-    border-top: 1px solid var(--border-color);
+    /* border-top: 1px solid var(--border-color); */
     background-color: var(--bg-color);
     max-height: 60vh;
     overflow-y: auto;
@@ -887,6 +889,7 @@ body .gist-wrapper .gist-data {
         margin-right: -1.5rem;
         padding-left: 1.5rem;
         padding-right: 1.5rem;
+        padding-bottom: 1.5rem;
     }
 }
 
@@ -954,6 +957,7 @@ body .gist-wrapper .gist-data {
         margin-right: -3rem;
         padding-left: 3rem;
         padding-right: 3rem;
+        padding-bottom: 1.5rem;
     }
 }
 
